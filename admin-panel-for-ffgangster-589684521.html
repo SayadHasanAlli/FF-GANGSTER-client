@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <style>
+    body { font-family: Arial; background:#111; color:white; }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      cursor: pointer;
+      background: #333;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .active {
+      background: orange;
+      color: black;
+    }
+
+    #container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      padding: 10px;
+    }
+
+    .card {
+      background:#222;
+      padding:15px;
+      border-radius:10px;
+    }
+
+    button {
+      padding:8px;
+      margin:5px;
+      border:none;
+      cursor:pointer;
+    }
+
+    .approve { background:green; color:white; }
+    .delete { background:red; color:white; }
+
+    ul { padding-left:20px; }
+    li { margin:4px 0; list-style:"🎮 "; }
+
+    @media (max-width:1024px){
+      #container { grid-template-columns:repeat(2,1fr); }
+    }
+
+    @media (max-width:600px){
+      #container { grid-template-columns:repeat(1,1fr); }
+    }
+
+    .heading{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status{
+      color: orange;
+      font-size: 12px;
+    }
+
+    .approved {
+      color: lightgreen !important;
+    }
+  </style>
+</head>
+<body>
+
+<h2 align="center">🧑‍💻 Admin Panel</h2>
+
+<!-- 🔥 Tabs -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTeams(event)">Teams</button>
+  <button class="tab-btn" onclick="showSolo(event)">Solo</button>
+</div>
+
+<div id="container"></div>
+
+<script>
+
+let currentTab = "teams";
+
+// 🔥 SWITCH TAB UI
+function setActive(btn){
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+// ==================== TEAMS ====================
+async function showTeams(e) {
+  currentTab = "teams";
+  if(e) setActive(e.target);
+
+  const res = await fetch("https://ff-gangster.onrender.com/teams");
+  const data = await res.json();
+
+  renderCards(data, "team");
+}
+
+// ==================== SOLO ====================
+async function showSolo(e) {
+  currentTab = "solo";
+  if(e) setActive(e.target);
+
+  const res = await fetch("https://ff-gangster.onrender.com/solo");
+  const data = await res.json();
+
+  renderCards(data, "solo");
+}
+
+// ==================== RENDER ====================
+function renderCards(data, type){
+  const container = document.getElementById("container");
+  container.innerHTML = "";
+
+  data.forEach(t => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.id = t._id; // 🔥 IMPORTANT
+
+    card.innerHTML = `
+      <div class="heading">
+        <h3>${type === "team" ? t.team : t.players[0]}</h3>
+        <span class="status ${t.status === "approved" ? "approved" : ""}">
+          ${t.status}
+        </span>
+      </div>
+
+      <p><b>Players:</b></p>
+      <ul>
+        ${t.players.map((p,i)=> p ? `<li>Player ${i+1}: ${p}</li>` : "").join("")}
+      </ul>
+
+      <p>📱 ${t.wpnum || "N/A"}</p>
+      <p>UPI: ${t.upi || "-"}</p>
+      <p>UTR: ${t.utr || "-"}</p>
+      <p>Payer: ${t.payer || "-"}</p>
+
+      <button class="approve" onclick="approve('${t._id}', '${type}')">Approve</button>
+      <button class="delete" onclick="del('${t._id}', '${type}')">Delete</button>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+// ==================== ACTIONS ====================
+
+// ✅ APPROVE (no reload)
+async function approve(id, type){
+  const url = type === "team"
+    ? `https://ff-gangster.onrender.com/approve/${id}`
+    : `https://ff-gangster.onrender.com/solo/approve/${id}`;
+
+  await fetch(url, {method:"PUT"});
+
+  // 🔥 update UI instantly
+  const card = document.getElementById(id);
+  if (card) {
+    const status = card.querySelector(".status");
+    status.innerText = "approved";
+    status.classList.add("approved");
+  }
+}
+
+
+// ✅ DELETE (no reload)
+async function del(id, type){
+  const url = type === "team"
+    ? `https://ff-gangster.onrender.com/delete/${id}`
+    : `https://ff-gangster.onrender.com/solo/delete/${id}`;
+
+  await fetch(url, {method:"DELETE"});
+
+  // 🔥 remove instantly
+  const card = document.getElementById(id);
+  if (card) card.remove();
+}
+
+
+// default load
+showTeams();
+
+</script>
+
+</body>
+</html>

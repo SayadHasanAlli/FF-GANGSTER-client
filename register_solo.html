@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FF GANGSTER Registration</title>
+
+  <!-- IMPORTANT for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Gaming Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: white;
+      padding: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff9900;
+      text-shadow: 0 0 10px #ffae00f2;
+      font-size: 22px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    form {
+      width: 100%;
+      max-width: 420px;
+      margin: auto;
+      padding: 15px;
+      background: rgba(0,0,0,0.85);
+      border-radius: 12px;
+      box-shadow: 0 0 15px #ffbf008f;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #111;
+      color: white;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #ffbf00;
+      box-shadow: 0 0 8px #ffbf00;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(45deg, #ff9d00ef, #ff9d00ef);
+      color: black;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      box-shadow: 0 0 10px #ff6f00;
+    }
+
+    /* 📱 Mobile tweak */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 18px;
+      }
+
+      .subtitle {
+        font-size: 12px;
+      }
+
+      input {
+        font-size: 13px;
+        padding: 9px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+    }
+
+    /* 💻 Tablet */
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 28px;
+      }
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ccc;
+      margin: 15px 5px;
+      font-size: 14px;
+    }
+
+    .checkbox-container input {
+      width: 18px;
+      height: 18px;
+      accent-color: orange;
+    }
+
+    #submitbtn {
+      width: 100%;
+      padding: 12px;
+      background: orange;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #submitbtn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+<h1>🔥 FF GANGSTER 🔥</h1>
+<p class="subtitle">Register You Dominate the Battlefield 🎮</p>
+
+<form id="form">
+
+  <input type="text" name="p1" placeholder="🎮 Enter your Name" required>
+  <input type="text" name="p2" placeholder="🎮Enter Player 2 name if (2v2)" >
+  <input type="text" name="wpnum" placeholder="📱 WhatsApp Number / Ph No." required>
+  <input type="text" name="upi" placeholder="💳 UPI ID / Cash" >
+  <input type="text" name="utr" placeholder="🧾 UTR Number if Payment mode online" >
+  <input type="text" name="payer" placeholder="👤 Payment Name if Online paid">
+  <input type="text" name="refer" placeholder="👤 Refer Name" >
+
+
+    <div class="checkbox-container">
+      <input type="checkbox" id="moneyConsent">
+      <label for="moneyConsent">
+        This game may include real money. Play at your own risk.
+      </label>
+    </div>
+
+  <button type="submit" id="submitbtn" disabled>🚀 Join Tournament</button>
+
+</form>
+
+<script>
+
+  const checkbox = document.getElementById("moneyConsent");
+  const submitButton = document.getElementById("submitbtn");
+
+  checkbox.addEventListener("change", function () {
+    submitButton.disabled = !this.checked;
+  });
+
+const form = document.getElementById("form");
+const submitBtn = form.querySelector("button");
+
+let isSubmitting = false;
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // prevent multiple clicks
+  if (isSubmitting) return;
+  isSubmitting = true;
+
+  // disable button + change text
+  submitBtn.disabled = true;
+  submitBtn.innerText = "Submitting...";
+
+  const formData = new FormData(form);
+
+  const data = {
+    players: [
+      formData.get("p1"),
+      formData.get("p2"),
+    ],
+    wpnum: formData.get("wpnum"),
+    upi: formData.get("upi"),
+    utr: formData.get("utr"),
+    payer: formData.get("payer"),
+    refer: formData.get("refer")
+
+  };
+
+  try {
+    const res = await fetch("https://ff-gangster.onrender.com/register_solo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (!res.ok) {
+        const errData = await res.json();
+        alert(errData.msg || "Server Error");
+        throw new Error("Failed");
+    }
+
+    // redirect after success
+    window.location.href = "https://ffgangster.netlify.app/success.html";
+
+  } catch (err) {
+    alert("❌ Something went wrong!");
+
+    // enable button again if error
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Submit";
+    isSubmitting = false;
+  }
+});
+</script>
+
+</body>
+</html>
