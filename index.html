@@ -222,7 +222,7 @@ footer{
 </section> -->
 
 <section>
-    <h3 class="t-card">On Going Tournament for SOLO Bermunda...</h3>
+    <h3 class="t-card">Upcoming Tournament for SOLO Bermunda...</h3>
 </section>
 
 <section class="stats">
@@ -231,19 +231,19 @@ footer{
     <p>JOIN Fast</p>
   </div>
   <div class="stat">
-    <h3>₹420+</h3>
+    <h3>₹<span id="soloPrize"></span>+</h3>
     <p>Total Prize Pool</p>
   </div>
   <div class="stat">
     <h3>Entry Fee</h3>
-    <p>₹30</p>
+    <p>₹<span id="soloFee"></span></p>
   </div>
 </section>
 
 <section class="features">
   <div class="box">
     <h3>🎮 Match Time</h3>
-    <p>Updated Shortly...</p>
+    <p id="soloTime"></p>
   </div>
   <div class="box">
     <h3>🔥 Real Rewards</h3>
@@ -251,7 +251,7 @@ footer{
   </div>
   <div class="box">
     <h3>🏆 Room ID & Password</h3>
-    <p>Visible here when available</p>
+    <p>Room Id: <span id="soloRoom"></span> | Password:  <span id="soloPass"></span></p>
   </div>
 
 
@@ -308,12 +308,12 @@ footer{
   <p>🏆 <b>Qualification: After all league matches, TOP 4 plyer will Won Prizes</b></p>
   <p>➤ Best performance Player will be declared WINNER , like There Ranks</p>
   <p>Ranks Calculate based on there points achived</p>
-    <p>💰 Entry Fee: ₹30 per player</p>
+  <p>💰 Entry Fee: ₹<span id="EntryFee"></span> per player</p>
   <p>💸 Prize Distribution:</p>
-  <p>🥇 Rank 1 : ₹210</p>
-  <p>🥇 Rank 2 : ₹120</p>
-  <p>🥇 Rank 3 : ₹60</p>
-  <p>🥇 Rank 4 : ₹30</p>
+  <p>🥇 Rank 1 : ₹<span id="rank1"></span></p>
+  <p>🥇 Rank 2 : ₹<span id="rank2"></span></p>
+  <p>🥇 Rank 3 : ₹<span id="rank3"></span></p>
+  <p>🥇 Rank 4 : ₹<span id="rank4"></span></p>
 
   
   <p>📢 Ranking System: Final ranking will be based on total points (kills + position).</p>
@@ -324,7 +324,7 @@ footer{
 </div>
 
 
-    <div style="background:#111; padding:15px; border-radius:10px; border:1px solid #ff6f0033; color:white;">
+<div style="background:#111; padding:15px; border-radius:10px; border:1px solid #ff6f0033; color:white;">
 
     <h3 class="tournament-rules-head" style="color:#ff6f00; text-align:center; margin-bottom: 15px; font-size: x-large;">🔥 Tournament Rules 🔥</h3>
 
@@ -401,8 +401,49 @@ function draw(){
 
   requestAnimationFrame(draw);
 }
-
 draw();
+
+
+const API = "https://ff-gangster.onrender.com";
+
+// SOLO DATA
+async function loadSolo() {
+  const res = await fetch(`${API}/api/match/solo`);
+  const data = await res.json();
+
+  console.log(data);
+
+  document.getElementById("soloRoom").innerText = data.roomId || "Not Announced";
+  document.getElementById("soloPass").innerText = data.password || "Not Announced";
+  document.getElementById("soloTime").innerText = data.matchTime || "Available Soon";
+  document.getElementById("soloFee").innerText = data.entryFee || 0;
+  document.getElementById("soloPrize").innerText = data.prizePool || 0;
+  document.getElementById("EntryFee").innerText = data.entryFee || 0;
+
+
+
+  document.getElementById("rank1").innerText = (data.entryFee || 0)*7;
+  document.getElementById("rank2").innerText = (data.entryFee || 0)*4;
+  document.getElementById("rank3").innerText = (data.entryFee || 0)*2;
+  document.getElementById("rank4").innerText = (data.entryFee || 0)*1;
+
+}
+loadSolo();
+// TEAM DATA
+// async function loadTeam() {
+//   const res = await fetch(`${API}/api/match/team`);
+//   const data = await res.json();
+
+//   document.getElementById("teamRoom").innerText = data.roomId || "Not Announced";
+//   document.getElementById("teamPass").innerText = data.password || "Not Announced";
+//   document.getElementById("teamTime").innerText = data.matchTime || "TBD";
+//   document.getElementById("teamFee").innerText = data.entryFee || 0;
+//   document.getElementById("teamPrize").innerText = data.prizePool || 0;
+// }
+
+// LOAD ON PAGE START
+
+// loadTeam();
 </script>
 
 </body>
