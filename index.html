@@ -279,9 +279,13 @@ footer{
   <p>➤ Top 4 teams will play against each other</p>
   <p>➤ Best performance team will be declared WINNER</p>
     <p>💰 Entry Fee: ₹200 per team</p>
-  <p>💸 Prize Distribution:</p>
+  <p>💸 Prize Distribution For Clash Squad:</p>
   <p>🥇 Winner: ₹1000</p>
-  <p>🥈 Runner-up: ₹300</p>
+  <p>🥈 Runner-up: ₹400</p>
+  <p>💸 Prize Distribution For Bermunda:</p>
+  <p>🥇 Rank 1 : ₹800</p>
+  <p>🥇 Rank 2 : ₹500</p>
+  <p>🥇 Rank 3 : ₹250</p>
   <p>📢 Ranking System: Final ranking will be based on total points (kills + position).</p>
   <p>⏱ Match Timing: All matches will be played on schedule. Late entry may lead to disqualification.</p>
   <p>🎯 Fair Play: Any cheating or unfair practice will result in instant elimination.</p>
@@ -306,11 +310,17 @@ footer{
   <p>➤ Lose = Points equals to NUmber of score </p>
   <p style="margin-left: 17px;" >supose player A,B score 6,7(13 rounds) so A = 6 points and B = 7+2(booyah) = 9 points </p>
 
+  <p>💰 Entry Fee: ₹<span id="EntryFee"></span> per player</p>
+
+  <p>💸 Prize Distribution <b>Clash Squad</b> 1V1 or 2V2:</p>
+  <p>Each Player Playe atleast 3 match basend on there points winner calculate</p>
+  <p>🥇 Winner: ₹<span id="winner"></span></p>
+  <p>🥈 Runner-up: ₹<span id="runner-up"></span></p>
+
   <p>🏆 <b>Qualification: After all league matches, TOP 4 plyer will Won Prizes</b></p>
   <p>➤ Best performance Player will be declared WINNER , like There Ranks</p>
   <p>Ranks Calculate based on there points achived</p>
-  <p>💰 Entry Fee: ₹<span id="EntryFee"></span> per player</p>
-  <p>💸 Prize Distribution:</p>
+  <p>💸 Prize Distribution <b>Bermunda</b>:</p>
   <p>🥇 Rank 1 : ₹<span id="rank1"></span></p>
   <p>🥇 Rank 2 : ₹<span id="rank2"></span></p>
   <p>🥇 Rank 3 : ₹<span id="rank3"></span></p>
@@ -427,6 +437,10 @@ async function loadSolo() {
   document.getElementById("rank2").innerText = (data.entryFee || 0)*4;
   document.getElementById("rank3").innerText = (data.entryFee || 0)*2;
   document.getElementById("rank4").innerText = (data.entryFee || 0)*1;
+
+  document.getElementById("winner").innerText = (data.entryFee || 0)*4;
+  document.getElementById("runner-up").innerText = (data.entryFee || 0)*2;
+
 
 }
 loadSolo();
