@@ -138,6 +138,42 @@
       cursor: not-allowed;
     }
 
+.payment-box {
+  text-align: center;
+  background: #222;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px;
+}
+
+.qr-img {
+  width: 200px;
+  height: 200px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+.info-box {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(145deg, #1a1a1a, #2c2c2c);
+  padding: 15px;
+  border-radius: 12px;
+  margin: 15px 10px;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  /* text-align: center; */
+}
+
+.info-box h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #00ffcc;
+}
+
+.info-box p {
+  margin: 8px 0;
+  line-height: 1.4;
+}
 
   </style>
 </head>
@@ -146,13 +182,37 @@
 
 <h1>🔥 FF GANGSTER 🔥</h1>
 <p class="subtitle">Register You Dominate the Battlefield 🎮</p>
+<div class="payment-box">
+  <h3>Scan & Pay</h3>
+
+  <img src="qr.png" alt="QR Code" class="qr-img">
+
+  <p style="font-family: 'poppins', sans-serif;">UPI ID: ffgangster@slc</p>
+
+  <p style="color:yellow; text-align: center; align-items: center;font-family: 'poppins', sans-serif">Payment karne ke baad UTR number enter karein</p>
+</div>
+<p style="color:red; text-align: center;">Wrong payment = No entry ❌</p>
+
+<div class="info-box">
+  <div class="info-inner-box">
+    <h3>📋 Important Details</h3>
+    <p>💳 <b>UPI ID:</b> Agar aap jeet te hain, prize isi UPI ID par bheja jayega.</p>
+    <p>🧾 <b>UTR Number:</b> Online payment karne ke baad apna UTR number zaroor enter karein. Yeh payment verification ke liye zaroori hai.</p>
+    <p>👤 <b>Payment Name:</b> Jis naam se payment kiya hai woh yahan likhein (UPI app ka naam).</p>
+    <p>🎁 <b>Refer Name:</b> Agar kisi ne aapko refer kiya hai toh uska naam likhein (optional).</p>
+    <p style="color:yellow;">⚠️ Galat UTR ya incomplete details hone par entry reject ho sakti hai.</p>
+  </div>
+</div>
+
+
+<p class="subtitle">Registration Form 🎮</p>
 
 <form id="form">
 
   <input type="text" name="p1" placeholder="🎮 Enter your Name" required>
   <input type="text" name="p2" placeholder="🎮Enter Player 2 name if (2v2) or Mode - cs or bermunda" >
   <input type="text" name="wpnum" placeholder="📱 WhatsApp Number / Ph No." required>
-  <input type="text" name="upi" placeholder="💳 UPI ID / Cash" >
+  <input type="text" name="upi" placeholder="💳 UPI ID / Cash " >
   <input type="text" name="utr" placeholder="🧾 UTR Number if Payment mode online" >
   <input type="text" name="payer" placeholder="👤 Payment Name if Online paid">
   <input type="text" name="refer" placeholder="👤 Refer Name" >
@@ -168,6 +228,8 @@
   <button type="submit" id="submitbtn" disabled>🚀 Join Tournament</button>
 
 </form>
+
+
 
 <script>
 
