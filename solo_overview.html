@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FF Tournament</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  body {
+    background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+    color: white;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 60px 20px;
+    text-align: center;
+    background: radial-gradient(circle, #ff004c33, transparent);
+  }
+
+  .hero h1 {
+    font-size: 34px;
+    background: linear-gradient(90deg, #ff004c, #ff7a00);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .hero p {
+    margin-top: 10px;
+    color: #ccc;
+  }
+
+  /* CARD */
+  .container {
+    max-width: 900px;
+    margin: -30px auto 20px;
+    padding: 20px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #333;
+  }
+
+  .tab {
+    padding: 12px;
+    cursor: pointer;
+    color: #aaa;
+    transition: 0.3s;
+  }
+
+  .tab.active {
+    color: #ff004c;
+    border-bottom: 2px solid #ff004c;
+  }
+
+  /* CONTENT */
+  .content {
+    margin-top: 20px;
+    min-height: 120px;
+    animation: fade 0.3s ease;
+  }
+
+  @keyframes fade {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  ul {
+    padding-left: 18px;
+  }
+
+  li {
+    margin: 8px 0;
+  }
+
+  /* REGISTER BUTTON */
+  .register {
+    position: sticky;
+    bottom: 0;
+    padding: 15px;
+    color: black;
+    background: linear-gradient(45deg, #e92e15ef, #ff9d00ef);
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+  }
+
+  .register:hover {
+    transform: scale(1.03);
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>🔥 Free Fire Solo Bermunda Tournament</h1>
+  <p>Entry ₹30 • Win up to ₹210</p>
+</div>
+
+<div class="container">
+  <div class="card">
+
+    <!-- TABS -->
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('overview', this)">Overview</div>
+      <div class="tab" onclick="showTab('points', this)">Points</div>
+      <div class="tab" onclick="showTab('prize', this)">Prize</div>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="content" class="content">
+        <div class="rules-box">
+
+        <h3 class="tournament-rules-head">🔥 Free Fire Daily Tournament 🔥</h3>
+
+        <div class="rules">
+
+            <p><b>🎮 About Tournament:</b></p>
+            <p>Free Fire daily tournaments are organized regularly. Join and compete to win exciting prizes.</p>
+
+            <p><b>💬 WhatsApp Support:</b></p>
+            <p>
+            Contact our organizer directly on WhatsApp:
+            <a href="https://wa.me/919556876287?text=Hi%20FF%20Gangster%20Team,%20I%20have%20a%20query%20regarding%20the%20tournament." 
+                target="_blank" 
+                style="color:#25D366;">
+                Chat on WhatsApp
+            </a>
+            </p>
+            <p>
+            Contact for gameplay issues, scores, match schedule, registration, or Game ID.
+            </p>
+
+            <p><b>📱 Platform:</b></p>
+            <p>● Mobile Only</p>
+
+            <hr style="margin:15px 0; border:0.5px solid #333;">
+
+            <p><b>📜 Tournament Rules:</b></p>
+            <p>• Room ID & Password will be visible on site at 6:00 PM You will be added to a Whatsapp group</p>
+            <p>• If not visible, contact admin on WhatsApp</p>
+            <p>• Match timing will be shared before the tournament</p>
+            <p>• Must play with registered account only</p>
+            <p>• Only Mobile players allowed (No emulator/other platforms)</p>
+
+            <hr style="margin:15px 0; border:0.5px solid #333;">
+
+            <p><b>🎯 Game Mode Settings:</b></p>
+            <p>• Mode: Classic</p>
+            <p>• Team Size: Solo</p>
+            <p>• Players: 48+</p>
+            <p>• Spectators: 1 (Admin only)</p>
+            <p>• HP: 200 | Movement Speed: 100%</p>
+            <p>• Environment: Day</p>
+            <p>• Fall Damage: Yes | Vehicles: Yes</p>
+            <p>• Airdrop: Yes | UAV: Yes</p>
+            <p>• EP: 0 | Jump Height: 100%</p>
+            <p>• Limited Ammo: Yes | Loadout: Yes</p>
+            <p>• Character Skill: Yes | Gun Property: Yes</p>
+            <p>• FOR CS - Character Skill: NO | Gun Property: NO</p>
+
+            <hr style="margin:15px 0; border:0.5px solid #333;">
+
+            <p><b>🏆 IF you WON:</b></p>
+            <p>• After winning, we contact you on WhatsApp for providing the prize</p>
+
+            <p style="margin-top:10px;">
+            📲 WhatsApp: for any Query
+            <a href="https://wa.me/919556876287" target="_blank" style="color:#25D366;">
+                Message Now
+            </a>
+            </p>
+
+        </div>
+        </div>
+        <p>📊 League System: Each Player will play 3 matches and earn points based on performance.</p>
+          <p>🏆 <b>Qualification: After all league matches, TOP 4 plyer will Won Prizes</b></p>
+        <p>➤ Best performance Player will be declared WINNER , like There Ranks</p>
+        <p>Ranks Calculate based on there points achived</p>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="register" onclick="goRegister()">
+      🚀 Register Now
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function showTab(type, el) {
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    el.classList.add("active");
+
+    let content = document.getElementById("content");
+
+    if (type === "overview") {
+      content.innerHTML = `
+        <div class="rules-box">
+
+        <h3 class="tournament-rules-head">🔥 Free Fire Daily Tournament 🔥</h3>
+
+        <div class="rules">
+
+            <p><b>🎮 About Tournament:</b></p>
+            <p>Free Fire daily tournaments are organized regularly. Join and compete to win exciting prizes.</p>
+
+            <p><b>💬 WhatsApp Support:</b></p>
+            <p>
+            Contact our organizer directly on WhatsApp:
+            <a href="https://wa.me/919556876287?text=Hi%20FF%20Gangster%20Team,%20I%20have%20a%20query%20regarding%20the%20tournament." 
+                target="_blank" 
+                style="color:#25D366;">
+                Chat on WhatsApp
+            </a>
+            </p>
+            <p>
+            Contact for gameplay issues, scores, match schedule, registration, or Game ID.
+            </p>
+
+            <p><b>📱 Platform:</b></p>
+            <p>● Mobile Only</p>
+
+            <hr style="margin:15px 0; border:0.5px solid #333;">
+
+            <p><b>📜 Tournament Rules:</b></p>
+            <p>• Room ID & Password will be visible on site at 6:00 PM You will be added to a Whatsapp group</p>
+            <p>• If not visible, contact admin on WhatsApp</p>
+            <p>• Match timing will be shared before the tournament</p>
+            <p>• Must play with registered account only</p>
+            <p>• Only Mobile players allowed (No emulator/other platforms)</p>
+
+            <hr style="margin:15px 0; border:0.5px solid #333;">
+
+            <p><b>🎯 Game Mode Settings:</b></p>
+            <p>• Mode: Classic</p>
+            <p>• Team Size: Solo</p>
+            <p>• Players: 48+</p>
+            <p>• Spectators: 1 (Admin only)</p>
+            <p>• HP: 200 | Movement Speed: 100%</p>
+            <p>• Environment: Day</p>
+            <p>• Fall Damage: Yes | Vehicles: Yes</p>
+            <p>• Airdrop: Yes | UAV: Yes</p>
+            <p>• EP: 0 | Jump Height: 100%</p>
+            <p>• Limited Ammo: Yes | Loadout: Yes</p>
+            <p>• Character Skill: Yes | Gun Property: Yes</p>
+            <p>• FOR CS - Character Skill: NO | Gun Property: NO</p>
+
+            <hr style="margin:15px 0; border:0.5px solid #333;">
+
+            <p><b>🏆 IF you WON:</b></p>
+            <p>• After winning, we contact you on WhatsApp for providing the prize</p>
+
+            <p style="margin-top:10px;">
+            📲 WhatsApp: for any Query
+            <a href="https://wa.me/919556876287" target="_blank" style="color:#25D366;">
+                Message Now
+            </a>
+            </p>
+
+        </div>
+        </div>
+        <p>📊 League System: Each Player will play 3 matches and earn points based on performance.</p>
+          <p>🏆 <b>Qualification: After all league matches, TOP 4 plyer will Won Prizes</b></p>
+        <p>➤ Best performance Player will be declared WINNER , like There Ranks</p>
+        <p>Ranks Calculate based on there points achived</p>
+      `;
+    }
+
+    if (type === "points") {
+      content.innerHTML = `
+        
+        <p style="font-size:16px; color:#ff7a00; font-weight:bold;">
+          📊 Points System
+        </p>
+
+        <hr style="margin:10px 0; border:0.5px solid #333;">
+
+        <!-- BERMUDA -->
+        <p style="font-weight:bold; color:#fff;">🏝️ Bermuda (Battle Royale):</p>
+
+        <p>🔫 Each Kill = <b>1 Point</b></p>
+        <p>🥇 Booyah (Rank 1) = <b>+5 Points</b></p>
+        <p>🥈 Rank 2 = <b>+3 Points</b></p>
+        <p>🥉 Rank 3 = <b>+2 Points</b></p>
+
+        <p style="color:#00ffcc; margin-top:5px;">
+          🎯 Final ranking = Kill Points + Position Points
+        </p>
+
+        <hr style="margin:10px 0; border:0.5px solid #333;">
+
+        <!-- CLASH SQUAD -->
+        <p style="font-weight:bold; color:#fff;">⚔️ Clash Squad (1v1 / 2v2):</p>
+
+        <p>🏆 Booyah (13 rounds win) = <b>+2 Points</b></p>
+        <p>🔥 Dominating Win (e.g. 7-0) = <b>+3 Points</b></p>
+        <p>📉 Loss = Points equal to rounds won</p>
+
+        <p style="margin-left:10px; font-size:13px; color:#bbb;">
+          Example: Player A vs Player B → Score 6-7  
+          ➤ A gets 6 points  
+          ➤ B gets 7 + 2 (Booyah bonus) = 9 points
+        </p>
+
+        <p style="color:#00ffcc; margin-top:5px;">
+          🎮 Skill-based scoring ensures fair ranking
+        </p>
+
+        <hr style="margin:10px 0; border:0.5px solid #333;">
+
+        <p style="color:#ff004c; font-weight:bold;">
+          ⚡ More kills = More chances to win!
+        </p>
+
+      `;
+    }
+
+if (type === "prize") {
+    content.innerHTML = `
+      <p style="font-size:16px; color:#ff7a00; font-weight:bold;">
+        💰 Total Prize Pool: ₹420+
+      </p>
+
+      <hr style="margin:10px 0; border:0.5px solid #333;">
+
+      <p><b>🏆 Prize Distribution (Bermuda):</b></p>
+
+      <p>🥇 Rank 1 : ₹<span id="rank1">210</span></p>
+      <p>🥈 Rank 2 : ₹<span id="rank2">120</span></p>
+      <p>🥉 Rank 3 : ₹<span id="rank3">60</span></p>
+      <p>🏅 Rank 4 : ₹<span id="rank4">30</span></p>
+
+      <p style="color:#00ffcc; margin-top:5px;">
+        🎯 Top 4 players win guaranteed rewards
+      </p>
+
+      <hr style="margin:10px 0; border:0.5px solid #333;">
+
+      <div style="margin-top:10px; color:#ccc;">
+
+        <p><b>⚔️ Clash Squad (1v1 / 2v2):</b></p>
+        <p style="font-size:13px;">
+          Each player will play at least 3 matches. Winners are decided based on total points.
+        </p>
+
+        <p>🥇 Winner: ₹<span id="winner">120</span></p>
+        <p>🥈 Runner-up: ₹<span id="runner-up">60</span></p>
+
+        <p style="color:#00ffcc; margin-top:5px;">
+          🎮 Skill-based ranking system
+        </p>
+
+      </div>
+
+      <hr style="margin:10px 0; border:0.5px solid #333;">
+
+      <p style="color:#25D366;">
+        💳 Instant Payment via UPI after match
+      </p>
+
+      <p style="color:#ff004c; font-weight:bold;">
+        ⚡ Limited Slots – Register Fast!
+      </p>
+    `;
+  }
+  }
+
+  function goRegister() {
+    window.location.href = "register_solo.html";
+  }
+
+</script>
+
+</body>
+</html>

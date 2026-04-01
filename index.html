@@ -6,193 +6,7 @@
 <title>FF GANGSTER | Esports</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Orbitron',sans-serif;
-}
-
-body{
-  background:#000;
-  color:white;
-  overflow-x:hidden;
-}
-
-/* 🔥 PARTICLES BACKGROUND */
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
-}
-
-/* HEADER */
-header{
-  text-align:center;
-  padding:12px;
-  border-bottom:2px solid #ff6f00;
-}
-
-header h1{
-  color:#ff6f00;
-  text-shadow:0 0 20px #ff6f00;
-  font-size:22px;
-}
-
-/* HERO */
-.hero{
-  height:80vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:15px;
-}
-
-.hero h2{
-  font-size:24px;
-  color:#ff6f00;
-  text-shadow:0 0 15px #ff6f00;
-  animation: glow 2s infinite alternate;
-}
-
-@keyframes glow{
-  from{ text-shadow:0 0 10px #ff6f00; }
-  to{ text-shadow:0 0 30px #ff6f00; }
-}
-
-.hero p{
-  margin:12px 0;
-  font-size:13px;
-  color:#ccc;
-}
-
-/* CTA BUTTON */
-.hero a{
-  display:inline-block;
-  padding:12px 25px;
-  background:linear-gradient(45deg,#ff6f00,#ff9100);
-  color:black;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
-  transition:0.3s;
-}
-
-.hero a:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 25px #ff6f00;
-}
-
-/* STATS */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  padding:20px;
-  text-align:center;
-}
-
-.stat{
-  background:#111;
-  padding:15px;
-  border-radius:10px;
-  border:1px solid #ff6f0033;
-}
-
-.stat h3{
-  color:#ff6f00;
-}
-
-/* FEATURES */
-.features{
-  padding:20px;
-  display:grid;
-  gap:10px;
-}
-
-.box{
-  background:#111;
-  padding:15px;
-  border-radius:10px;
-  text-align:center;
-  border:1px solid #ff6f0033;
-}
-
-.box h3{
-  color:#ff6f00;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:15px;
-  font-size:12px;
-  color:#777;
-}
-.register_btns{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-/* RESPONSIVE */
-@media (min-width:600px){
-  .hero h2{ font-size:30px; }
-  .stats{ grid-template-columns:repeat(3,1fr); }
-}
-
-@media (min-width:900px){
-  .hero h2{ font-size:40px; }
-  .features{ grid-template-columns:repeat(3,1fr); }
-}
-.t-card{
-    margin-left: 25px;
-    background-color: #ff9100;
-    color: black;
-    padding: 5px;
-    padding-left: 10px;
-    border-radius: 10px;
-}
-.rules * {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.5;
-  color: #ccc;
-  font-size: 13px;
-}
-.tournament-rules-head{
-  color: #ff6f00;
-  text-align: center;
-  margin-bottom: 15px;
-  text-shadow: 0 0 10px #ff6f00;
-}
-.tournament-format {
-  background: #111;
-  margin: 5px;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #ff6f0033;
-}
-
-.tournament-format h2 {
-  color: #ff6f00;
-  text-align: center;
-  margin-bottom: 15px;
-  text-shadow: 0 0 10px #ff6f00;
-}
-
-.tournament-format p {
-  font-family: 'Poppins', sans-serif;
-  color: #ccc;
-  margin: 6px 0;
-  font-size: 13px;
-}
-</style>
+<link rel="stylesheet" href="mainpagecss.css">
 </head>
 
 <body>
@@ -210,8 +24,8 @@ footer{
     <p>Register Now<span style="font-weight: bolder; color: #ffffff;">( For Solo Match )</span></p>
     <div class="register_btns">
       <!-- style="pointer-events: none;" to diable anchor tags -->
-      <a href="register.html" >🚀 REGISTER Squad <p style="font-size: 10px; color: black;">Details are below - entryFee ₹200</p></a>
-      <a href="register_solo.html">🚀 REGISTER Solo<p style="font-size: 10px; color: black;">Entryfee - ₹30</p></a>
+      <a href="squad_overview.html" >🚀 REGISTER Squad <p style="font-size: 10px; color: black;">Details are below - entryFee ₹200</p></a>
+      <a href="solo_overview.html">🚀 REGISTER Solo<p style="font-size: 10px; color: black;">Entryfee - ₹30</p></a>
     </div>
 
   </div>
@@ -223,7 +37,7 @@ footer{
 </section> -->
 
 <section>
-    <h3 class="t-card">Upcoming Tournament for SOLO Bermunda...</h3>
+    <h3 class="t-card">Upcoming Tournament for SOLO / Squad Bermunda...</h3>
 </section>
 
 <section class="stats">
@@ -232,25 +46,25 @@ footer{
     <p>JOIN Fast</p>
   </div>
   <div class="stat">
-    <h3>₹<span id="soloPrize"></span>+</h3>
-    <p>Total Prize Pool</p>
+    <h3>100%</h3>
+    <p>Prize Guarantee!</p>
   </div>
   <div class="stat">
-    <h3>Entry Fee</h3>
-    <p>₹<span id="soloFee"></span></p>
+    <h3>Match Proofs & Rules</h3>
+    <a style="color: white;margin-top: 10px;" href="match_proof.html">view more</a>
   </div>
 </section>
 
 <section class="features">
-  <div class="box">
+  <div class="stat">
     <h3>🎮 Match Time</h3>
     <p id="soloTime"></p>
   </div>
-  <div class="box">
+  <div class="stat">
     <h3>🔥 Real Rewards</h3>
     <p>Earn money & fame</p>
   </div>
-  <div class="box">
+  <div class="stat">
     <h3>🏆 Room ID & Password</h3>
     <p>Room Id: <span id="soloRoom"></span> | Password:  <span id="soloPass"></span></p>
   </div>
@@ -260,7 +74,8 @@ footer{
 
   <h2>🔥 Tournament Format & Prize Details For Squad🔥</h2>
 
-  <p>🎮 Mode: Free Fire Clash Squad / Bermuda (League + Finals)</p>
+  <div class="rules">
+    <p>🎮 Mode: Free Fire Clash Squad / Bermuda (League + Finals)</p>
   <p>👥 Team Size: 4 Players + 1 Substitute</p>
   <p>📊 League System: All teams will play multiple matches and earn points based on performance. The Number matches depends on Total Team count.</p>
   <p style="font-weight: bolder; color:white ;" >📈 Points System for Bermunda:</p>
@@ -290,14 +105,16 @@ footer{
   <p>⏱ Match Timing: All matches will be played on schedule. Late entry may lead to disqualification.</p>
   <p>🎯 Fair Play: Any cheating or unfair practice will result in instant elimination.</p>
   <p>➤ All important updates, match schedules, and results will be shared through our official WhatsApp group and In our Offcial website means here. After registration, your team will be added to the group for smooth communication and coordination.</p>
+  </div>
 
 </div>
 
-  <div class="tournament-format">
+  <div class="tournament-format" style="font-family: 'poppins', sans-serif;">
 
   <h2>🔥 Tournament Format & Prize Details For Solo</h2>
 
-  <p>🎮 Mode: Free Fire Clash Squad / Bermuda (League + Finals)</p>
+  <div class="rules">
+    <p>🎮 Mode: Free Fire Clash Squad / Bermuda (League + Finals)</p>
   <p>📊 League System: Each Player will play 3 matches and earn points based on performance.</p>
   <p style="font-weight: bolder; color:white ;" >📈 Points System for Bermunda:</p>
   <p>➤ Each Kill = 1 Point</p>
@@ -321,48 +138,20 @@ footer{
   <p>➤ Best performance Player will be declared WINNER , like There Ranks</p>
   <p>Ranks Calculate based on there points achived</p>
   <p>💸 Prize Distribution <b>Bermunda</b>:</p>
-  <p>🥇 Rank 1 : ₹<span id="rank1"></span></p>
-  <p>🥇 Rank 2 : ₹<span id="rank2"></span></p>
-  <p>🥇 Rank 3 : ₹<span id="rank3"></span></p>
-  <p>🥇 Rank 4 : ₹<span id="rank4"></span></p>
+  <p>🥇 Rank 1 : ₹<span id="rank1">210</span></p>
+  <p>🥇 Rank 2 : ₹<span id="rank2">120</span></p>
+  <p>🥇 Rank 3 : ₹<span id="rank3">60</span></p>
+  <p>🥇 Rank 4 : ₹<span id="rank4">30</span></p>
 
   
   <p>📢 Ranking System: Final ranking will be based on total points (kills + position).</p>
   <p>⏱ Match Timing: All matches will be played on schedule. Late entry may lead to disqualification.</p>
   <p>🎯 Fair Play: Any cheating or unfair practice will result in instant elimination.</p>
   <p>➤ All important updates, match schedules, and results will be shared through our official WhatsApp group and In our Offcial website means here. After registration, your team will be added to the group for smooth communication and coordination.</p>
+  </div>
 
 </div>
 
-
-<div style="background:#111; padding:15px; border-radius:10px; border:1px solid #ff6f0033; color:white;">
-
-    <h3 class="tournament-rules-head" style="color:#ff6f00; text-align:center; margin-bottom: 15px; font-size: x-large;">🔥 Tournament Rules 🔥</h3>
-
-    <div class="rules">
-        <p>➤ In CS (Clash Squad), players are NOT allowed to trap enemies in zone intentionally.</p>
-        <p>➤ All players must play using allowed/default guns only. No unfair advantage weapons.</p>
-        <p>➤ No hacking, cheating, or use of any third-party tools is strictly prohibited.</p>
-        <p>➤ Use of panels, mods, or config files is NOT allowed. If caught → immediate elimination.</p>
-        <p>➤ All matches will be recorded for fair play and verification.</p>
-        <p>➤ 2–3 spectators/admins will monitor matches. Any suspicious activity → direct disqualification.</p>
-        <p>➤ Once registered, the team MUST participate. No last-minute cancellation allowed.</p>
-        <p>➤ No refund will be provided after 6 hours of registration.</p>
-        <p>➤ UTR number must be valid. Invalid or fake UTR → disqualification.</p>
-        <p>➤ Duplicate UTR submissions will lead to instant removal from tournament.</p>
-        <p>➤ All matches will be played on time. No excuses like “network issue” or “late join”.</p>
-        <p>➤ Team must join lobby within given time. Delay can lead to match loss.</p>
-        <p>➤ Any kind of abusive language or toxic behavior is strictly banned.</p>
-        <p>➤ Decision taken by admin will be final and cannot be challenged.</p>
-        <p>➤ Players must use their registered in-game names only.</p>
-        <p>➤ Team changes after registration are NOT allowed.</p>
-        <p>➤ In case of technical issue from server side, match may be restarted.</p>
-        <p>➤ Fair play and sportsmanship is mandatory for all participants.</p>
-        <p>➤ If any match fails to start due to technical or organizational reasons, it will be rescheduled. If rescheduling is not possible, a full refund will be issued. We ensure complete safety of your payment.</p>
-
-    </div>
-
-</div>
  
 </section>
 
@@ -465,19 +254,6 @@ async function loadSolo() {
   document.getElementById("soloRoom").innerText = data.roomId || "Not Announced";
   document.getElementById("soloPass").innerText = data.password || "Not Announced";
   document.getElementById("soloTime").innerText = data.matchTime || "Available Soon";
-  document.getElementById("soloFee").innerText = data.entryFee || 0;
-  document.getElementById("soloPrize").innerText = data.prizePool || 0;
-  document.getElementById("EntryFee").innerText = data.entryFee || 0;
-
-
-
-  document.getElementById("rank1").innerText = (data.entryFee || 0)*7;
-  document.getElementById("rank2").innerText = (data.entryFee || 0)*4;
-  document.getElementById("rank3").innerText = (data.entryFee || 0)*2;
-  document.getElementById("rank4").innerText = (data.entryFee || 0)*1;
-
-  document.getElementById("winner").innerText = (data.entryFee || 0)*4;
-  document.getElementById("runner-up").innerText = (data.entryFee || 0)*2;
 
 
 }

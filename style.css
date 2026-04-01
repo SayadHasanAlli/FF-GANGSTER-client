@@ -12,10 +12,12 @@ body {
 
 h1 {
   text-align: center;
-  color: #ff9900;
-  text-shadow: 0 0 10px #ffae00f2;
-  font-size: 22px;
+  font-size:26px;
+  background: linear-gradient(90deg, #ff004c, #ff7a00);
+  -webkit-background-clip: text;
+  color: transparent;
 }
+
 
 .subtitle {
   text-align: center;
@@ -57,7 +59,7 @@ button {
   margin-top: 10px;
   border: none;
   border-radius: 6px;
-  background: linear-gradient(45deg, #ff9d00ef, #ff9d00ef);
+  background: linear-gradient(45deg, #f11111ef, #ff9d00ef);
   color: black;
   font-weight: bold;
   font-size: 15px;
