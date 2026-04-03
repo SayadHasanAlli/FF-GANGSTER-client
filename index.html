@@ -173,6 +173,25 @@
        style="width:60px; height:60px; border-radius:50%; box-shadow:0 0 10px #25D366;">
 </a>
 
+<section class="review-section">
+  <h2>🔥 Latest Player Reviews</h2>
+
+  <form id="reviewForm">
+    <input type="text" id="name" placeholder="Your Name" required />
+    
+    <select id="rating">
+      <option value="5">⭐⭐⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
+    </select>
+
+    <textarea id="message" placeholder="Write your review..." required></textarea>
+
+    <button type="submit">Submit Review</button>
+  </form>
+
+  <div id="reviewsContainer" class="reviews-grid"></div>
+</section>
+
 <footer style="
   text-align:center;
   padding:15px;
@@ -258,6 +277,51 @@ async function loadSolo() {
 
 }
 loadSolo();
+
+// 🔥 LOAD REVIEWS (Top 8)
+async function loadReviews() {
+  const res = await fetch(`${API}/api/reviews`);
+  const data = await res.json();
+
+  const container = document.getElementById("reviewsContainer");
+  container.innerHTML = "";
+
+  data.forEach(r => {
+    container.innerHTML += `
+      <div class="review">
+        <h4>${r.name}</h4>
+        <p>${"⭐".repeat(r.rating)}</p>
+        <p>${r.message}</p>
+      </div>
+    `;
+  });
+}
+
+loadReviews();
+
+
+// 🔥 SUBMIT REVIEW
+document.getElementById("reviewForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const message = document.getElementById("message").value.trim();
+  const rating = document.getElementById("rating").value;
+
+  const res = await fetch(`${API}/api/add-review`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, message, rating })
+  });
+
+  const data = await res.json();
+  alert(data.msg);
+
+  // reload reviews after submit
+  loadReviews();
+});
 // TEAM DATA
 // async function loadTeam() {
 //   const res = await fetch(`${API}/api/match/team`);

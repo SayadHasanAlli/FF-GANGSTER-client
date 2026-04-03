@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin Panel</title>
+  <title>FF Gangster Admin</title>
+
   <style>
     body { font-family: Arial; background:#111; color:white; }
+
+    h2 { text-align:center; }
 
     /* Tabs */
     .tabs {
       display: flex;
       justify-content: center;
       margin-bottom: 15px;
+      flex-wrap: wrap;
     }
 
     .tab-btn {
@@ -45,6 +49,7 @@
       margin:5px;
       border:none;
       cursor:pointer;
+      border-radius:5px;
     }
 
     .approve { background:green; color:white; }
@@ -77,119 +82,190 @@
     }
   </style>
 </head>
+
 <body>
 
-<h2 align="center">🧑‍💻 Admin Panel</h2>
+<h2>🧑‍💻 FF Gangster Admin Panel</h2>
 
-<!-- 🔥 Tabs -->
 <div class="tabs">
   <button class="tab-btn active" onclick="showTeams(event)">Teams</button>
   <button class="tab-btn" onclick="showSolo(event)">Solo</button>
+  <button class="tab-btn" onclick="showReviews(event)">Reviews</button>
 </div>
 
-<div id="container"></div>
+<div id="container">Loading...</div>
 
 <script>
 
-let currentTab = "teams";
+const API = "https://ff-gangster.onrender.com/api";
 
-// 🔥 SWITCH TAB UI
+// ================= TAB SWITCH =================
 function setActive(btn){
   document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
 }
 
-// ==================== TEAMS ====================
-async function showTeams(e) {
-  currentTab = "teams";
+// ================= TEAMS =================
+async function showTeams(e){
   if(e) setActive(e.target);
 
-  const res = await fetch("https://ff-gangster.onrender.com/teams");
+  const container = document.getElementById("container");
+  container.innerHTML = "Loading...";
+
+  const res = await fetch(`${API}/teams`);
   const data = await res.json();
 
-  renderCards(data, "team");
+  renderTeamCards(data);
 }
 
-// ==================== SOLO ====================
-async function showSolo(e) {
-  currentTab = "solo";
-  if(e) setActive(e.target);
-
-  const res = await fetch("https://ff-gangster.onrender.com/solo");
-  const data = await res.json();
-
-  renderCards(data, "solo");
-}
-
-// ==================== RENDER ====================
-function renderCards(data, type){
+function renderTeamCards(data){
   const container = document.getElementById("container");
   container.innerHTML = "";
 
   data.forEach(t => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.id = t._id; // 🔥 IMPORTANT
+    container.innerHTML += `
+      <div class="card" id="${t._id}">
+        <div class="heading">
+          <h3>${t.team}</h3>
+          <span class="status ${t.status === "approved" ? "approved" : ""}">
+            ${t.status}
+          </span>
+        </div>
 
-    card.innerHTML = `
-      <div class="heading">
-        <h3>${type === "team" ? t.team : t.players[0]}</h3>
-        <span class="status ${t.status === "approved" ? "approved" : ""}">
-          ${t.status}
-        </span>
+        <ul>
+          ${t.players.map((p,i)=> `<li>${p}</li>`).join("")}
+        </ul>
+
+        <p>📱 ${t.wpnum}</p>
+        <p>UPI: ${t.upi}</p>
+        <p>UTR: ${t.utr}</p>
+
+        ${t.status !== "approved" ? 
+          `<button class="approve" onclick="approve('${t._id}','team')">Approve</button>` : ""}
+
+        <button class="delete" onclick="del('${t._id}','team')">Delete</button>
       </div>
-
-      <p><b>Players:</b></p>
-      <ul>
-        ${t.players.map((p,i)=> p ? `<li>Player ${i+1}: ${p}</li>` : "").join("")}
-      </ul>
-
-      <p>📱 ${t.wpnum || "N/A"}</p>
-      <p>UPI: ${t.upi || "-"}</p>
-      <p>UTR: ${t.utr || "-"}</p>
-      <p>Payer: ${t.payer || "-"}</p>
-
-      <button class="approve" onclick="approve('${t._id}', '${type}')">Approve</button>
-      <button class="delete" onclick="del('${t._id}', '${type}')">Delete</button>
     `;
-
-    container.appendChild(card);
   });
 }
 
-// ==================== ACTIONS ====================
+// ================= SOLO =================
+async function showSolo(e){
+  if(e) setActive(e.target);
 
-// ✅ APPROVE (no reload)
+  const container = document.getElementById("container");
+  container.innerHTML = "Loading...";
+
+  const res = await fetch(`${API}/solo`);
+  const data = await res.json();
+
+  renderSoloCards(data);
+}
+
+function renderSoloCards(data){
+  const container = document.getElementById("container");
+  container.innerHTML = "";
+
+  data.forEach(t => {
+    container.innerHTML += `
+      <div class="card" id="${t._id}">
+        <div class="heading">
+          <h3>${t.players[0]}</h3>
+          <span class="status ${t.status === "approved" ? "approved" : ""}">
+            ${t.status}
+          </span>
+        </div>
+
+        <ul>
+          ${t.players.map((p)=> `<li>${p}</li>`).join("")}
+        </ul>
+
+        <p>📱 ${t.wpnum}</p>
+
+        ${t.status !== "approved" ? 
+          `<button class="approve" onclick="approve('${t._id}','solo')">Approve</button>` : ""}
+
+        <button class="delete" onclick="del('${t._id}','solo')">Delete</button>
+      </div>
+    `;
+  });
+}
+
+// ================= REVIEWS =================
+async function showReviews(e){
+  if(e) setActive(e.target);
+
+  const container = document.getElementById("container");
+  container.innerHTML = "Loading...";
+
+  const res = await fetch(`${API}/reviews-all`);
+  const data = await res.json();
+
+  container.innerHTML = "";
+
+  data.forEach(r => {
+    container.innerHTML += `
+      <div class="card" id="${r._id}">
+        <div class="heading">
+          <h3>${r.name}</h3>
+          <span class="status ${r.approved ? "approved" : ""}">
+            ${r.approved ? "approved" : "pending"}
+          </span>
+        </div>
+
+        <p>${"⭐".repeat(r.rating)}</p>
+        <p>${r.message}</p>
+
+        ${!r.approved ? 
+          `<button class="approve" onclick="approveReview('${r._id}')">Approve</button>` : ""}
+
+        <button class="delete" onclick="deleteReview('${r._id}')">Delete</button>
+      </div>
+    `;
+  });
+}
+
+// ================= ACTIONS =================
+
+// APPROVE TEAM / SOLO
 async function approve(id, type){
   const url = type === "team"
-    ? `https://ff-gangster.onrender.com/approve/${id}`
-    : `https://ff-gangster.onrender.com/solo/approve/${id}`;
+    ? `${API}/approve/${id}`
+    : `${API}/solo/approve/${id}`;
 
-  await fetch(url, {method:"PUT"});
+  await fetch(url, { method:"PUT" });
 
-  // 🔥 update UI instantly
-  const card = document.getElementById(id);
-  if (card) {
-    const status = card.querySelector(".status");
-    status.innerText = "approved";
-    status.classList.add("approved");
-  }
+  document.querySelector(`#${id} .status`).innerText = "approved";
 }
 
-
-// ✅ DELETE (no reload)
+// DELETE TEAM / SOLO
 async function del(id, type){
+  if(!confirm("Delete this?")) return;
+
   const url = type === "team"
-    ? `https://ff-gangster.onrender.com/delete/${id}`
-    : `https://ff-gangster.onrender.com/solo/delete/${id}`;
+    ? `${API}/delete/${id}`
+    : `${API}/solo/delete/${id}`;
 
-  await fetch(url, {method:"DELETE"});
+  await fetch(url, { method:"DELETE" });
 
-  // 🔥 remove instantly
-  const card = document.getElementById(id);
-  if (card) card.remove();
+  document.getElementById(id).remove();
 }
 
+// REVIEW APPROVE
+async function approveReview(id){
+  await fetch(`${API}/review/approve/${id}`, { method:"PUT" });
+
+  document.querySelector(`#${id} .status`).innerText = "approved";
+}
+
+// REVIEW DELETE
+async function deleteReview(id){
+  if(!confirm("Delete this review?")) return;
+
+  await fetch(`${API}/review/delete/${id}`, { method:"DELETE" });
+
+  document.getElementById(id).remove();
+}
 
 // default load
 showTeams();
