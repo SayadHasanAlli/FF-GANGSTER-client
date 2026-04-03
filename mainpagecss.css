@@ -191,7 +191,7 @@ footer{
 }
 
 .review-section h2 {
-  color: #ff6f00;
+  color: red;
   margin-bottom: 20px;
 }
 
@@ -208,7 +208,7 @@ footer{
 }
 
 #reviewForm button {
-  background: #ff6f00;
+  background: linear-gradient(90deg, #ff004c, #ff7a00);
   color: white;
   padding: 10px 20px;
   border: none;
