@@ -204,7 +204,6 @@ footer{
   display: block;
   padding: 10px;
   border-radius: 6px;
-  border: 1px solid #ccc;
 }
 
 #reviewForm button {
@@ -248,4 +247,5 @@ footer{
   font-size: 15px;
   color: #eee;
   line-height: 1.5;
+  font-family: 'poppins',sans-serif;
 }

@@ -125,29 +125,66 @@ function renderTeamCards(data){
   const container = document.getElementById("container");
   container.innerHTML = "";
 
-  data.forEach(t => {
-    container.innerHTML += `
-      <div class="card" id="${t._id}">
-        <div class="heading">
-          <h3>${t.team}</h3>
-          <span class="status ${t.status === "approved" ? "approved" : ""}">
-            ${t.status}
-          </span>
-        </div>
+data.forEach(t => {
+  container.innerHTML += `
+    <div class="card" id="${t._id}" style="padding:12px;margin-bottom:10px;border-radius:10px;background:#1c1c1c;color:white;">
+      
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        
+        <h3 style="margin:0;">${t.team}</h3>
 
-        <ul>
-          ${t.players.map(p => `<li>${p}</li>`).join("")}
-        </ul>
+        <span 
+          style="
+            padding:4px 10px;
+            border-radius:6px;
+            font-size:12px;
+            ${t.status === "approved" 
+              ? "color:#28a745;" 
+              : "background:#ff9800;color:white;"}
+          ">
+          ${t.status}
+        </span>
 
-        <p>📱 ${t.wpnum}</p>
-
-        ${t.status !== "approved" ? 
-          `<button class="approve" onclick="approve('${t._id}','team')">Approve</button>` : ""}
-
-        <button class="delete" onclick="del('${t._id}','team')">Delete</button>
       </div>
-    `;
-  });
+
+      <!-- Players -->
+      <div style="margin-top:8px;">
+        ${t.players.map((p, i) => `
+          <p style="
+            margin:4px 0;
+            padding:5px 8px;
+            border-radius:6px;
+            background:rgba(255,255,255,0.05);
+            font-weight:600;
+          ">
+            Player ${i === 0 ? "👑" : i + 1}: ${p}
+          </p>
+        `).join("")}
+      </div>
+
+      <!-- Payment Info -->
+      <p style="margin-top:8px;">📱 WhatsApp: ${t.wpnum}</p>
+      <p>👤 Payment Person: ${t.payer}</p>
+      <p>💳 UPI: ${t.upi}</p>
+      <p>🧾 UTR: ${t.utr}</p>
+      <p>📅 Time: ${new Date(t.createdAt).toLocaleString()}</p>
+
+      ${t.status !== "approved" ? 
+        `<button 
+          style="margin-top:6px;padding:6px 10px;border:none;border-radius:6px;background:#28a745;color:white;cursor:pointer;"
+          onclick="approve('${t._id}','team')">
+          Approve
+        </button>` : ""}
+
+      <button 
+        style="margin-top:6px;margin-left:6px;padding:6px 10px;border:none;border-radius:6px;background:#dc3545;color:white;cursor:pointer;"
+        onclick="del('${t._id}','team')">
+        Delete
+      </button>
+
+    </div>
+  `;
+});
 }
 
 // ================= SOLO =================
@@ -169,26 +206,52 @@ function renderSoloCards(data){
   container.innerHTML = "";
 
   data.forEach(t => {
-    container.innerHTML += `
-      <div class="card" id="${t._id}">
-        <div class="heading">
-          <h3>${t.players[0]}</h3>
-          <span class="status ${t.status === "approved" ? "approved" : ""}">
-            ${t.status}
-          </span>
-        </div>
+  container.innerHTML += `
+    <div class="card" id="${t._id}">
+      
+      <div class="heading" style="display:flex;justify-content:space-between;align-items:center;">
+        
+        <h3 style="margin:0;">Player Names</h3>
 
-        <ul>
-          ${t.players.map(p => `<li>${p}</li>`).join("")}
-        </ul>
-
-        ${t.status !== "approved" ? 
-          `<button class="approve" onclick="approve('${t._id}','solo')">Approve</button>` : ""}
-
-        <button class="delete" onclick="del('${t._id}','solo')">Delete</button>
+        <span 
+          class="status ${t.status === "approved" ? "approved" : ""}" 
+          style="
+            padding:4px 10px;
+            border-radius:6px;
+            font-size:12px;
+          ">
+          ${t.status}
+        </span>
       </div>
-    `;
-  });
+
+      <div style="margin-top:8px;">
+        ${t.players.map((p, i) => `
+          <p style="
+            margin:4px 0;
+            padding:5px 8px;
+            border-radius:6px;
+            background:rgba(255,255,255,0.05);
+            font-weight:600;
+          ">
+            Player ${i + 1}: ${p}
+          </p>
+        `).join("")}
+      </div>
+
+      <p>📱 WhatsApp: ${t.wpnum}</p>
+      <p>👤 Payment Person: ${t.payer}</p>
+      <p>💳 UPI: ${t.upi}</p>
+      <p>🧾 UTR: ${t.utr}</p>
+      <p>🎁 Refer: ${t.refer || "None"}</p>
+      <p>📅 Time: ${new Date(t.createdAt).toLocaleString()}</p>
+
+      ${t.status !== "approved" ? 
+        `<button class="approve" onclick="approve('${t._id}','solo')">Approve</button>` : ""}
+
+      <button class="delete" onclick="del('${t._id}','solo')">Delete</button>
+    </div>
+  `;
+});
 }
 
 // ================= REVIEWS =================
