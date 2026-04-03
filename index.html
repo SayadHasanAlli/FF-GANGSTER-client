@@ -53,6 +53,10 @@
     <h3>Match Proofs & Rules</h3>
     <a style="color: white;margin-top: 10px;" href="match_proof.html">view more</a>
   </div>
+  <div class="stat">
+    <h3>More About Tournaments</h3>
+    <a style="color: white;margin-top: 10px;" href="tournamentsDetails.html">view more</a>
+  </div>
 </section>
 
 <section class="features">
@@ -180,8 +184,11 @@
     <input type="text" id="name" placeholder="Your Name" required />
     
     <select id="rating">
-      <option value="5">⭐⭐⭐⭐⭐</option>
-      <option value="4">⭐⭐⭐⭐</option>
+      <option value="5">★★★★★ (5 Star)</option>
+      <option value="4">★★★★☆ (4 Star)</option>
+      <option value="3">★★★☆☆ (3 Star)</option>
+      <option value="2">★★☆☆☆ (2 Star)</option>
+      <option value="1">★☆☆☆☆ (1 Star)</option>
     </select>
 
     <textarea id="message" placeholder="Write your review..." required></textarea>
@@ -287,11 +294,23 @@ async function loadReviews() {
   container.innerHTML = "";
 
   data.forEach(r => {
+    const date = new Date(r.createdAt).toLocaleDateString();
+
     container.innerHTML += `
       <div class="review">
-        <h4>${r.name}</h4>
-        <p>${"⭐".repeat(r.rating)}</p>
-        <p>${r.message}</p>
+        
+        <div class="review-stars">
+          ${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}
+        </div>
+
+        <div class="review-meta">
+          ${r.name} • ${date}
+        </div>
+
+        <div class="review-message">
+          ${r.message}
+        </div>
+
       </div>
     `;
   });
