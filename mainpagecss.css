@@ -54,16 +54,17 @@ header h1{
 }
 
 .hero h2{
-  font-size:32px;
+  font-size:20px;
   background: linear-gradient(90deg, #ff004c, #ff7a00);
   -webkit-background-clip: text;
   color: transparent;
+  margin-bottom: 20px;
 }
 
 .hero p{
   margin:10px 0;
   font-size:14px;
-  color:#bbb;
+  color:#c0c0c0;
 }
 
 /* BUTTON */
@@ -76,6 +77,8 @@ header h1{
   text-decoration:none;
   font-weight:bold;
   transition:0.3s;
+  font-size: 15px;
+  margin-top: 10px;
 }
 
 .hero a:hover{
@@ -313,6 +316,7 @@ footer{
 
 .proof-section h2 {
   margin-bottom: 15px;
+  font-size: 20px;
 }
 
 /* Horizontal scroll */
@@ -355,4 +359,55 @@ footer{
   padding: 10px;
   font-size: 14px;
   font-weight: 500;
+}
+
+.trust-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 15px;
+}
+
+.trust-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  text-align: center;
+  padding: 10px 5px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.3s;
+}
+
+/* Hover effect (optional but cool) */
+.trust-box:hover {
+  transform: scale(1.05);
+  background: rgba(255, 100, 0, 0.2);
+}
+
+.trust-section p {
+  margin: 5px 0;
+  font-family: 'poppins', sans-serif;
+}
+
+/* Live activity blinking */
+.live-activity {
+  text-align: center;
+  margin-top: 2px;
+  font-size: 13px;
+  color: #00ff88;
+  font-weight: bold;
+  animation: blink 1.5s infinite;
+  font-family: 'poppins', sans-serif;
+
+}
+
+/* Blink animation */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
 }

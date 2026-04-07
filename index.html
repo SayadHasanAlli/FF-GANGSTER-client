@@ -19,17 +19,23 @@
 
 <section class="hero">
   <div>
-    <h2>DOMINATE THE BATTLEGROUND</h2>
-    <p>Join the most intense eSports tournaments</p>
-    <p>Register Now<span style="font-weight: bolder; color: #ffffff;">( For Solo / Squad Matches )</span></p>
+    <h2>🔥 Win Real Cash Playing Free Fire
+    ₹100 Entry → Win ₹400+
+    Weekly Matches | Instant Payout</h2>
+    <p>Choose Your Mode & Start Winning 💰</p>
     <div class="register_btns">
       <!-- style="pointer-events: none;" to diable anchor tags -->
-      <a href="squad_overview.html" >🚀 REGISTER Squad <p style="font-size: 10px; color: black;">Details are below - entryFee ₹100</p></a>
-      <a href="solo_overview.html">🚀 REGISTER Solo<p style="font-size: 10px; color: black;">Entryfee - ₹30</p></a>
+      <a href="squad_overview.html" >🚀 🔥 Join SQUAD & Win Cash <p style="font-size: 10px; color: black;">EntryFee ₹100 | Only <span id="totalSlots" style="color: white;"></span> slots Available</p></a>
+      <div class="live-activity">
+        🟢 <span id="playerjoined"></span> players joined in last 3 hour
+      </div>
+      <a href="solo_overview.html">🚀 ⚡ Play SOLO & Earn Cash<p style="font-size: 10px; color: black;">Entryfee - ₹30 | Comming Soon...</p></a>
     </div>
 
   </div>
 </section>
+
+
 
 <section class="winner-section">
   <h2>Recent Winners🏆</h2>
@@ -77,11 +83,21 @@
       <img src="stats/final1.jpeg" alt="Payment Proof">
       <p>Final</p>
     </div>
+    <div class="proof-card">
+      <img src="" alt="we are working">
+      <p>ALL proofs are updated soon...</p>
+      
+    </div>
 
     <!-- Another Proof -->
 
   </div>
 </section>
+<div class="trust-section">
+  <p class="trust-box">✅ 150+ Players Joined</p>
+  <p class="trust-box">💰 ₹6500+ Paid to Winners</p>
+  <p class="trust-box">🎮 100% Real Matches</p>
+</div>
 
 <!-- POINTS SYSTEM IS HERE -->
 <!-- <section class="hero">
@@ -345,7 +361,8 @@ async function loadSolo() {
   document.getElementById("soloRoom").innerText = data.roomId || "Not Announced";
   document.getElementById("soloPass").innerText = data.password || "Not Announced";
   document.getElementById("soloTime").innerText = data.matchTime || "Available Soon";
-
+  document.getElementById("totalSlots").innerText = data.totalSlots || "Available Soon";
+  document.getElementById("playerjoined").innerText = data.title || "Updating..."
 
 }
 loadSolo();
