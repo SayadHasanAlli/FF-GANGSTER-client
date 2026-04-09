@@ -32,7 +32,7 @@
     <h3>📋 Important Details</h3>
     <p>💳 <b>UPI ID:</b> Agar aap jeet te hain, prize isi UPI ID par bheja jayega... agr Trust karte hain tab hi upi id dale warna hamara team aapko contact karega agar aap match jeet te hai toh fr privetly apko prize share kiya jayega with your privecy</p>
     <p>🧾 <b>UTR Number:</b> Online payment karne ke baad apna UTR number zaroor enter karein. Yeh payment verification ke liye zaroori hai.</p>
-    <h3>AFTER payment , Screenshot pls WhatsApp pe share karen for srcurity reason - on WhatsApp Floating Icon</h3>
+    <h3>AFTER payment , Screenshot pls Share on the form</h3>
     <p>👤 <b>Payment Name:</b> Jis naam se payment kiya hai woh yahan likhein (app ka naam banking name / jiss name se hume payment recieve hua hoo).</p>
     <p>🎁 <b>Refer Name:</b> Agar kisi ne aapko refer kiya hai toh uska naam likhein (optional).</p>
     <p style="color:yellow;">⚠️ Galat UTR ya incomplete details hone par entry reject ho sakti hai.</p>
@@ -51,7 +51,22 @@
   <input type="text" name="utr" placeholder="🧾 UTR Number or Share the Screenshot on whatsapp" >
   <input type="text" name="payer" placeholder="👤 Payment Name if Online paid">
   <input type="text" name="refer" placeholder="👤 Refer Name" >
+  <button type="button" onclick="goToUpload()" style="
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    background:#949493;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+  ">
+  📸 Upload Payment Screenshot
+  </button>
 
+  <p style="color:yellow;text-align:center;font-size: 12px;">
+  ⚠️ First upload screenshot, then click Submit
+  </p>
 
     <div class="checkbox-container">
       <input type="checkbox" id="moneyConsent">
@@ -93,6 +108,23 @@ const form = document.getElementById("form");
 const submitBtn = form.querySelector("button");
 
 let isSubmitting = false;
+let screenshotUploaded = false;
+
+function goToUpload() {
+  const payer = document.querySelector('[name="payer"]').value;
+  const wp = document.querySelector('[name="wpnum"]').value;
+
+  if (!payer || !wp) {
+    alert("⚠️ Please fill Payment Name and WhatsApp Number first");
+    return;
+  }
+
+  const formURL = `https://docs.google.com/forms/d/e/1FAIpQLSdEV-t3q-vkuOnHCgHraJ83DKaVbc4Qp6pHBCMsBtpdJsqc2A/viewform?entry.836366465=${encodeURIComponent(payer)}&entry.1835916487=${encodeURIComponent(wp)}`;
+
+  screenshotUploaded = true;
+
+  window.open(formURL, "_blank");
+}
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
