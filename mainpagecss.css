@@ -485,3 +485,9 @@ footer{
   color: white;
   cursor: pointer;
 }
+.social_media{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
